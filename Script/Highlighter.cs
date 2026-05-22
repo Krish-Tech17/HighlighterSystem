@@ -17,6 +17,8 @@ public class Highlighter : MonoBehaviour
 
     private Dictionary<GameObject, Coroutine> activeHighlights = new();
 
+    List<Outline> outlines = new List<Outline>();
+
     private void Awake()
     {
         if (Instance == null)
@@ -85,6 +87,12 @@ public class Highlighter : MonoBehaviour
         }
 
         activeHighlights.Clear();
+
+        foreach (var outline in outlines)
+        {
+            if (outline) outline.enabled = false;
+        }
+        outlines.Clear();
     }
 
 
@@ -103,7 +111,7 @@ public class Highlighter : MonoBehaviour
         outline.OutlineWidth = defaultWidth;
         outline.blink = defaultBlink;
         outline.enabled = true;
-
+        outlines.Add(outline);
         // handle timer and prevent duplicates
         if (activeHighlights.ContainsKey(target))
         {
