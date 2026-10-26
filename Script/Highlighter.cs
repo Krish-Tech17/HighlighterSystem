@@ -10,6 +10,8 @@ public class Highlighter : MonoBehaviour
     public Color defaultColor = Color.yellow;
     public float defaultWidth = 4f;
     public bool defaultBlink = true;
+    [Range(0.1f, 10f)]
+    public float defaultBlinkSpeed = 4f;
 
     [Header("Optional Auto Stop")]
     public bool useAutoStop = false;   // if ON, default duration below is used
@@ -109,7 +111,8 @@ public class Highlighter : MonoBehaviour
 
         outline.OutlineColor = defaultColor;
         outline.OutlineWidth = defaultWidth;
-        outline.blink = defaultBlink;
+        outline.blinkSpeed = 4f;
+        outline.blink = true;
         outline.enabled = true;
         outlines.Add(outline);
         // handle timer and prevent duplicates
